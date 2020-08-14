@@ -1,5 +1,6 @@
 class Injector {
   Injector();
+
   Map mappings = {};
 
   get<T>() {
@@ -15,5 +16,7 @@ class Injector {
     this.mappings[T.toString()] = o;
   }
 }
+
+Injector injector = new Injector();
 
 // https://rlbisbe.net/2014/08/04/creating-a-dependency-injection-engine-with-c/

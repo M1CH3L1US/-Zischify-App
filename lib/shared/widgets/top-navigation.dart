@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zischify/src/styles/Color.dart';
+import 'package:zischify/src/styles/styles.dart';
 
 class TopNavigation extends StatelessWidget {
   TopNavigation();
@@ -7,12 +7,11 @@ class TopNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: blackPrimary,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            MaterialButton(onPressed: () => {}, child: Text('Menu')),
-          ],
-        ));
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        MaterialButton(onPressed: () => {}, child: Text('Menu')),
+      ],
+    ));
   }
 }

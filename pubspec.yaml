@@ -31,6 +31,8 @@ dependencies:
   flutter_secure_storage: ^3.3.3
   webview_flutter: ^0.3.22+1
   http: ^0.12.2
+  intl: ^0.16.1
+  material_design_icons_flutter: ^4.0.5345
 
   rxdart: 0.22.0
   # The following adds the Cupertino Icons font to your application.
@@ -45,6 +47,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 flutter:
+  uses-material-design: true
   fonts:
     - family: Roboto
       fonts:
@@ -60,4 +63,3 @@ flutter:
         - asset: fonts/Roboto-MediumItalic.ttf
         - asset: fonts/Roboto-Thin.ttf
         - asset: fonts/Roboto-ThinItalic.ttf
-  uses-material-design: true

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:zischify/models/models.dart';
 import 'package:zischify/services/auth.service.dart';
-import 'package:zischify/src/styles/Color.dart';
-import 'package:zischify/src/styles/Heading.dart';
-import 'package:zischify/src/styles/SubTitle.dart';
+import 'package:zischify/shared/widgets/divider.dart';
+import 'package:zischify/src/di/injector.dart';
+import 'package:zischify/src/styles/styles.dart';
 
 class UserInformationTab extends StatefulWidget {
   @override
@@ -10,48 +11,62 @@ class UserInformationTab extends StatefulWidget {
 }
 
 class UserInformationState extends State<UserInformationTab> {
-  Map<String, dynamic> _profile;
+  Profile _profile;
+  final AuthService _authService = injector.get<AuthService>();
 
   @override
   initState() {
     super.initState();
-    authService.profile.listen((state) => setState(() => _profile = state));
+    _authService.profile.listen((state) => setState(() => _profile = state));
   }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Container(
-        width: MediaQuery.of(context).size.width,
-        height: 150,
-        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-        color: blackPrimary,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (_profile != null) ...[
-              Container(
-                width: 75,
-                height: 75,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: NetworkImage(_profile['avatarURL']),
-                      fit: BoxFit.fill),
-                ),
+      height: 100,
+      width: size.width,
+      padding: EdgeInsets.only(left: 20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if (_profile != null) ...[
+            Container(
+              width: 75,
+              height: 75,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: NetworkImage(_profile.avatarURL), fit: BoxFit.fill),
               ),
-              Flexible(
-                  child: Container(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      h5(_profile['username']),
-                      sub1(_profile['email']),
-                    ]),
-              ))
-            ]
-          ],
-        ));
+            ),
+            Flexible(
+                child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _profile.username,
+                      style: TextStyle(
+                          color: Palette.whiteHighlight,
+                          fontSize: 20,
+                          letterSpacing: 1.2),
+                    ),
+                    Text(
+                      _profile.email,
+                      style: TextStyle(
+                          color: Colors.white60,
+                          fontSize: 14,
+                          letterSpacing: 1.2),
+                    )
+                  ]),
+            ))
+          ]
+        ],
+      ),
+    );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:zischify/services/auth.service.dart';
+import 'package:zischify/src/di/injector.dart';
 
 class SignUpView extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class SignUpState extends State<SignUpView> {
       Completer<WebViewController>();
 
   final String redirectURL = 'https://vaorra.net';
+  final AuthService _authService = injector.get<AuthService>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +29,8 @@ class SignUpState extends State<SignUpView> {
       },
       onPageFinished: (url) {
         if (url.startsWith(redirectURL)) {
-          print(url);
           String code = url.split("?code=").last;
-          authService.auth(code);
+          _authService.auth(code);
           Navigator.pop(context);
         }
       },

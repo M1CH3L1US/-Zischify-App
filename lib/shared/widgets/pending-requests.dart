@@ -1,52 +1,56 @@
-import 'package:flutter/material.dart';
-import 'package:zischify/services/auth.service.dart';
-import 'package:zischify/src/styles/Color.dart';
-import 'package:zischify/src/styles/Heading.dart';
-import 'package:zischify/src/styles/SubTitle.dart';
+// import 'package:flutter/material.dart';
+// import 'package:zischify/di-bottstrapper.dart';
+// import 'package:zischify/models/RequestData.dart';
+// import 'package:zischify/services/auth.service.dart';
+// import 'package:zischify/services/request.service.dart';
+// import 'package:zischify/shared/widgets/request-information-box.dart';
+// import 'package:zischify/src/styles/heading.dart';
+// import 'package:zischify/src/styles/SubTitle.dart';
+// import 'package:zischify/src/styles/styles.dart';
 
-class PendingRequestsWidget extends StatefulWidget {
-  @override
-  PendingRequestState createState() => PendingRequestState();
-}
+// class PendingRequestsWidget extends StatefulWidget {
+//   @override
+//   PendingRequestState createState() => PendingRequestState();
+// }
 
-class PendingRequestState extends State<PendingRequestsWidget> {
-  @override
-  initState() {
-    super.initState();
-    // authService.profile.listen((state) => setState(() => _profile = state));
-  }
+// class PendingRequestState extends State<PendingRequestsWidget> {
+//   final RequestService _requestService = injector.get<RequestService>();
+//   List<Map<String, dynamic>> _requests = [];
 
-  final List<String> stuff = ['Hey', 'Du', 'Spast'];
+//   @override
+//   initState() {
+//     super.initState();
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 500,
-      color: blackPrimary,
-      child: Column(children: [
-        h3('Pending Zisch Requests',
-            style: TextStyle(
-                color: rbYellow(op: 0.9), fontWeight: FontWeight.w700)),
-        Expanded(
-            child: ListView.builder(
-                itemCount: stuff.length,
-                itemBuilder: (BuildContext context, int idx) {
-                  return Center(
-                      child: Container(
-                          width: MediaQuery.of(context).size.width - 50,
-                          decoration:
-                              BoxDecoration(color: blackHighlight, boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(33, 33, 33, 0.8),
-                              offset: Offset(1, 4),
-                            )
-                          ]),
-                          margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                          height: 120,
-                          child: Text(stuff[idx])));
-                }))
-      ]),
-    );
-  }
-}
+//     _requestService
+//         .getPendingRequests()
+//         .listen((data) => setState(() => _requests = data));
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: MediaQuery.of(context).size.width,
+//       height: 500,
+//       color: Palette.blackPrimary,
+//       child: Column(children: [
+//         Padding(
+//             padding: EdgeInsets.only(bottom: 20),
+//             child: h3('Pending Zisch Requests',
+//                 style: TextStyle(
+//                     color: Palette.rbYellow(op: 0.9),
+//                     fontWeight: FontWeight.w700))),
+//         Expanded(
+//             child: _requests?.length != 0
+//                 ? ListView.builder(
+//                     itemCount: _requests.length,
+//                     itemBuilder: (BuildContext context, int idx) {
+//                       var data = _requests[idx];
+//                       print('hey');
+//                       print(data);
+//                       return Center(child: RequestInformationBoxWidget(data()));
+//                     })
+//                 : null)
+//       ]),
+//     );
+//   }
+// }
